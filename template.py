@@ -12,45 +12,45 @@ Work through the numbered sections in order. Each one tells you what it must do.
 Delete these instructions as you replace them with your code.
 """
 
-# ==================================================================== INPUT
-# 1. Ask for your three values.
-#
-label=""
-first=0.0
-second=0.0
+# =================================================================== FUNCTIONS
+def check_record(value, limit):
+    """calculate difference and percentage"""
+    difference = value - limit
+    percent=(value/limit)*100 
+    return difference, percent
+def print_report(label,value,limit,difference,percent,status):
+    print"="*34
+    print("Label:",label)
+    print(f"Value:{value:.2f}")
+    print(f"Limit:{limit:.2f}")
+    print(f"Difference:{difference:.2f}")
+    print(f"Percentage:{percent:.2f}%")
+    print("Status:", status)
+    print"="*34
 
-label=input("label:")
-first=float(input("first"))
-second=float(input("second"))
 
 
-# ================================================================== PROCESS
-# 2. Work out the difference and the percentage.       [Typical and above]
-difference=second-first
-print(difference)
-percentage=first*100/second
-print(percentage)
 
-# 3. Decide a status and store it in a variable called status.
-status=60
-if percentage>=60:
- print("OVERLIMIT")
-else :
-    print("OK")
-#    
-# 4. Print the report.
-#
-print("=" * 34)
-print(f"difference:{difference:.2f}")
-print(f"percentage:{percentage:.2f}%")
-print(f"status:{status}")
+records=[
+    {"label":"R-001,"value":87, "limit":100},
+    {"label":"R-002", "value":120,"limit":100},
+    {"label": "R-003","value":45.0,"limit":100}
+]
 
-print("=" * 34)
 
+# =============================================================== PROCESS + OUTPUT
+for record in records:
+laabel=record["label"]
+value=record["value"]
+limit=record["limit"]
+difference, percent=check_record(value,limit)
+status="OVERLIMI" if value > limit else "OK"
+print_report(label,value,limit,difference,percent, status)
 
 # ==========================================================================
-# 5. Before you finish:
+# 4. Before you finish:
 #
-#    [ ] Run it three times with different numbers
-#    [ ] Run it with a total of 0 and note the error (do not fix it yet)
-#    [ ] Check every variable name says what it holds
+#    [ ] Run it and check every record's numbers are correct by hand
+#    [ ] If you are loading from a file, check what happens when the file
+#        does not exist - write the error down
+#    [ ] Check every function still does one job
