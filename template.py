@@ -12,38 +12,31 @@ Work through the numbered sections in order. Each one tells you what it must do.
 Delete these instructions as you replace them with your code.
 """
 
-# ====================================================================== CLASS
+import pandas as pd
 
-class Record:
-    def __init__(self, label, value, limit):
-     self.label = label
-     self.value = value
-     self.limit = limit
-
-
-# ==================================================================== RECORDS
-r1 = Record("R=001", 87.0, 100.0)
-r2 = Record("R-002", 95.0, 100.0)
-
-print(r1.status())
-print(r2.status())
+# ==================================================================== LOAD
+# 1. 
+import pandas as pd
+people = pd.read_csv("people.csv")
+print(people)
 
 
-# ==================================================================== OUTPUT
+# ================================================================= PROCESS
+# 2.
+people["percent"]=(people["value"] / people["limit"]) * 100
+print(people)
 
+# ================================================================== OUTPUT
+# 3. 
+import pandas as pd
+people = pd.read_csv("people.csv")
 
-def print_report(r):
-    print("=" * 34)
-    print("Label:", r.label)
-    print("Value:", r.value)
-    print("Limit:", r.limit)
-    print("=" * 34)
+people["percent"] = (people["value"] / people["limit"]) * 100
+print(people)
 
 
 # ==========================================================================
 # 4. Before you finish:
-#
-#    [ ] Run it and check every record's numbers by hand
-#    [ ] Check every method only reads/changes its OWN object (self) -
-#        nothing reaches outside itself
-#    [ ] Check every method and __init__ has a one-line docstring
+#    [ ] Run it and check the percent/status columns by hand for one row
+#    [ ] Check you used & (not "and") if you combined more than one condition
+#    [ ] Check every column your code refers to actually exists - watch case
